@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.database import engine, Base, SessionLocal
 import app.models
 from app.models import Zone, RiskScore, Alert
-from app.api import zones, risk, simulator, impact, community, alerts
+from app.api import zones, risk, simulator, impact, community, alerts, demo
 
 Base.metadata.create_all(bind=engine)
 
@@ -22,6 +22,7 @@ app.include_router(simulator.router,  prefix="/api/simulator")
 app.include_router(impact.router,     prefix="/api/impact")
 app.include_router(community.router,  prefix="/api/community")
 app.include_router(alerts.router,     prefix="/api/alerts")
+app.include_router(demo.router,       prefix="/api/demo")
 
 @app.get("/")
 def root():
